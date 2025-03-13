@@ -105,7 +105,7 @@
             color: #ff7e5f;
         }
         #compras {
-            width: 100px;
+            width: 60px;
         }
         .quantidade {
             width: 50px;
@@ -116,6 +116,39 @@
         }
         .pagamento label {
             margin-right: 10px;
+        }
+        .pagamento button {
+            margin-top: 10px; /* Adiciona espaço acima do botão */
+            padding: 10px 20px; /* Adiciona preenchimento ao botão */
+            background-color: #ff7e5f; /* Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove a borda do botão */
+            border-radius: 5px; /* Adiciona bordas arredondadas ao botão */
+            cursor: pointer; /* Adiciona um cursor de ponteiro ao passar o mouse */
+            transition: background-color 0.3s; /* Adiciona uma transição suave para a cor de fundo */
+        }
+        .pagamento button:hover {
+            background-color: #feb47b; /* Cor de fundo ao passar o mouse */
+        }
+        .endereco {
+            margin-top: 20px; /* Adiciona espaço acima do campo de endereço */
+            padding: 10px; /* Adiciona preenchimento ao redor do campo de endereço */
+            background-color: #f1f1f1; /* Cor de fundo do campo de endereço */
+            border-radius: 5px; /* Adiciona bordas arredondadas ao campo de endereço */
+        }
+        .endereco label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333; /* Cor do texto do label */
+        }
+        .endereco input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #fff; /* Cor de fundo do input */
+            color: #333; /* Cor do texto do input */
         }
         footer {
             background: linear-gradient(to right, #ff7e5f, #feb47b);
@@ -234,13 +267,18 @@
                     <input type="radio" name="pagamento" value="dinheiro"> Dinheiro
                 </label>
                 <label>
-                    <input type="radio" name="pagamento" value="cartao-credito"> Cartão de Crédito
+                    <input type="radio" name="pagamento" value="cartao-credito"> Cartão de Crédito ou Débito
                 </label>
+                <div class="endereco">
+                    <label for="endereco">Endereço de Entrega:</label>
+                    <input type="text" id="endereco" name="endereco" placeholder="Digite seu endereço">
+                </div>
+                <button type="button" onclick="enviarPedido()">Enviar Pedido</button>
             </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2023 Lanchonete Bom Sabor. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Lanchonete Bom Sabor. Todos os direitos reservados.</p>
     </footer>
     <script>
         function atualizarCarrinho(element) {
@@ -268,6 +306,10 @@
             });
 
             carrinhoTotal.textContent = total.toFixed(2).replace('.', ',');
+        }
+
+        function enviarPedido() {
+            alert('Pedido enviado com sucesso!');
         }
     </script>
 </body>
