@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Cardápio Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .menu {
+            width: 100%;
+            max-width: 60%;
+            margin-bottom: 20px;
+        }
+        .carrinho {
+            width: 100%;
+            max-width: 35%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .produto {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .produto:hover {
+            transform: scale(1.02);
+        }
+        .produto img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .produto-info {
+            flex-grow: 1;
+        }
+        .produto-descricao {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .produto-preco {
+            font-weight: bold;
+            color: #ff7e5f;
+        }
+        .carrinho-titulo {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #ff7e5f;
+        }
+        .carrinho-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .carrinho-total {
+            font-weight: bold;
+            text-align: right;
+            color: #ff7e5f;
+        }
+        #compras {
+            width: 100px;
+        }
+        .quantidade {
+            width: 50px;
+            margin-left: 10px;
+        }
+        .pagamento {
+            margin-top: 20px;
+        }
+        .pagamento label {
+            margin-right: 10px;
+        }
+        footer {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .menu, .carrinho {
+                max-width: 100%;
+            }
+            footer{
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lanchonete Bom Sabor</h1>
+    </header>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Cardápio</a>
+        <a href="#">Contato</a>
+    </nav>
+    <div class="container">
+        <div class="menu">
+            <div class="produto">
+                <img src="imagens/hamburguer4.jpg" alt="Hambúrguer Simples">
+                <div class="produto-info">
+                    <h2>Hambúrguer Simples</h2>
+                    <p class="produto-descricao">Delicioso hambúrguer com carne bovina, queijo, alface e tomate.</p>
+                    <p class="produto-preco">R$ 15,00</p>
+                </div>
+                <input type="checkbox" name="hamburguer-simples" value="15" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-hamburguer-simples" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/hamburguer1.jpg" alt="Hambúrguer com Bacon">
+                <div class="produto-info">
+                    <h2>Hambúrguer com Bacon</h2>
+                    <p class="produto-descricao">Hambúrguer suculento com bacon crocante, queijo e molho especial.</p>
+                    <p class="produto-preco">R$ 18,00</p>
+                </div>
+                <input type="checkbox" name="hamburguer-bacon" value="18" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-hamburguer-bacon" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/hamburguer2.jpg" alt="Hambúrguer de Frango">
+                <div class="produto-info">
+                    <h2>Hambúrguer de Frango</h2>
+                    <p class="produto-descricao">Hambúrguer de frango grelhado com alface, tomate e maionese.</p>
+                    <p class="produto-preco">R$ 14,00</p>
+                </div>
+                <input type="checkbox" name="hamburguer-frango" value="14" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-hamburguer-frango" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/hamburguer3.jpg" alt="Hambúrguer Vegano">
+                <div class="produto-info">
+                    <h2>Hambúrguer Vegano</h2>
+                    <p class="produto-descricao">Hambúrguer vegano com grão-de-bico, alface, tomate e molho especial.</p>
+                    <p class="produto-preco">R$ 16,00</p>
+                </div>
+                <input type="checkbox" name="hamburguer-vegano" value="16" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-hamburguer-vegano" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/batata frita-1583884.jpg" alt="Batata Frita">
+                <div class="produto-info">
+                    <h2>Batata Frita</h2>
+                    <p class="produto-descricao">Batata frita crocante e saborosa.</p>
+                    <p class="produto-preco">R$ 8,00</p>
+                </div>
+                <input type="checkbox" name="batata-frita" value="8" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-batata-frita" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/bebidas.jpg" alt="Refrigerante">
+                <div class="produto-info">
+                    <h2>Refrigerante</h2>
+                    <p class="produto-descricao">Refrigerante gelado de diversos sabores.</p>
+                    <p class="produto-preco">R$ 5,00</p>
+                </div>
+                <input type="checkbox" name="refrigerante" value="5" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-refrigerante" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+            <div class="produto">
+                <img src="imagens/agua.jpg" alt="Água">
+                <div class="produto-info">
+                    <h2>Água</h2>
+                    <p class="produto-descricao">Água mineral gelada.</p>
+                    <p class="produto-preco">R$ 3,00</p>
+                </div>
+                <input type="checkbox" name="agua" value="3" onchange="atualizarCarrinho(this)">
+                <input class="quantidade" type="number" name="quantidade-agua" value="1" min="1" onchange="atualizarCarrinho(this)">
+            </div>
+        </div>
+        <div class="carrinho">
+            <img src="imagens/carrinho de compras.png" alt="carro de compras" id="compras">
+            <div class="carrinho-titulo">Carrinho de Compras</div>
+            <div id="carrinho-itens"></div>
+            <div class="carrinho-total">Total: R$ <span id="carrinho-total">0,00</span></div>
+            <div class="pagamento">
+                <h3>Formas de Pagamento</h3>
+                <label>
+                    <input type="radio" name="pagamento" value="pix"> Pix
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="dinheiro"> Dinheiro
+                </label>
+                <label>
+                    <input type="radio" name="pagamento" value="cartao-credito"> Cartão de Crédito
+                </label>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Lanchonete Bom Sabor. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+        function atualizarCarrinho(element) {
+            const carrinhoItens = document.getElementById('carrinho-itens');
+            const carrinhoTotal = document.getElementById('carrinho-total');
+            let total = 0;
+
+            carrinhoItens.innerHTML = '';
+
+            const checkboxes = document.querySelectorAll('.menu input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const quantidadeInput = document.querySelector(`input[name="quantidade-${checkbox.name}"]`);
+                    const quantidade = parseInt(quantidadeInput.value);
+                    const preco = parseFloat(checkbox.value);
+                    const itemTotal = quantidade * preco;
+
+                    const item = document.createElement('div');
+                    item.className = 'carrinho-item';
+                    item.textContent = `${checkbox.name.charAt(0).toUpperCase() + checkbox.name.slice(1)} - R$ ${itemTotal.toFixed(2).replace('.', ',')} (${quantidade}x)`;
+                    carrinhoItens.appendChild(item);
+
+                    total += itemTotal;
+                }
+            });
+
+            carrinhoTotal.textContent = total.toFixed(2).replace('.', ',');
+        }
+    </script>
+</body>
+</html>
